@@ -1,0 +1,27 @@
+{
+  "name": "carnet-de-recettes",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000C\u0000a\u0000r\u0000n\u0000e\u0000t\u0000 \u0000d\u0000e\u0000 \u0000r\u0000e\u0000c\u0000e\u0000t\u0000t\u0000e\u0000s\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server . -p 5500"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yassirBENJABBOR/Carnet-de-recettes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/yassirBENJABBOR/Carnet-de-recettes/issues"
+  },
+  "homepage": "https://github.com/yassirBENJABBOR/Carnet-de-recettes#readme",
+  "dependencies": {
+    "axios": "^1.21.1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
