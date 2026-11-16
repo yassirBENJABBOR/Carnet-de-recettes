@@ -4,7 +4,7 @@ import axios from "axios";
 export async function getRecipes() {
     const response = await api.get("/recipes", {
         params: {
-            limit: 12
+            limit: 15
         }
     })
     return response.data;
