@@ -1,18 +1,10 @@
-import { getRecipes } from "./API.js"
+import { getRecipes ,searchRecipes } from "./API.js"
 
-const affichagerecette = document.querySelector("#affichagerecette")
+const affichagerecette = document.querySelector("#recipes-container")
 
-async function afficherRecettes() {
-    const data = await getRecipes();
+async function afficherRecettes(recette) {
 
-    console.log(data);
-    console.log(data.recipes);
-    console.log(data.recipes[0]);
-    const comnteurerecette = document.querySelector("#recipes-count")
-    comnteurerecette.textContent=data.recipes.length
-
-    const recettes = data.recipes
-    recettes.forEach(recette => {
+    recette.forEach(recette => {
         const carte = document.createElement("div")
 
         carte.className = "bg-white rounded-xl shadow-md overflow-hidden  ";
@@ -48,12 +40,52 @@ async function afficherRecettes() {
 
         affichagerecette.appendChild(carte);
 
-
-
     });
-
-
 }
 
+async function chargerRecettes() {
+    const data = await getRecipes();
+    const recettes = data.recipes;  
 
-afficherRecettes();
+    // console.log(data);
+    // console.log(data.recipes);
+    // console.log(data.recipes[0]);
+    const comnteurerecette = document.querySelector("#recipes-count")
+    comnteurerecette.textContent=data.recipes.length
+
+    afficherRecettes(recettes);
+}
+chargerRecettes()
+
+
+async function rechercherecette(motrechercher) {
+    const data = await searchRecipes(motrechercher);
+    // console.log(data)
+    affichagerecette.replaceChildren()
+    afficherRecettes(data.recipes);
+    
+}
+
+const searchForm = document.querySelector("#search-form")
+const searchinput = document.querySelector("#search-input")
+
+
+searchForm.addEventListener("submit",function(event){
+
+    event.preventDefault
+    affichagerecette.replaceChildren()
+    const recette= searchinput.value.trim()
+    rechercherecette(recette)
+    afficherMessageVide()
+
+})
+
+const emptymessage = document.querySelector("#empty-message")
+const showallbutton = document.querySelector("#show-all-button")
+
+async function afficherMessageVide() {
+    if (searchinput.value.trim()=== ""){
+        emptymessage.classList.remove("hidden")
+        affichagerecette.classList.add("hidden")
+    }
+} 
