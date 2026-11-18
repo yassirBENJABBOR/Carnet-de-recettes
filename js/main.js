@@ -52,8 +52,10 @@ async function chargerRecettes() {
     // console.log(data.recipes[0]);
     const comnteurerecette = document.querySelector("#recipes-count")
     comnteurerecette.textContent=data.recipes.length
-
-    afficherRecettes(recettes);
+    affichagerecette.replaceChildren()
+    emptymessage.classList.add("hidden")
+    affichagerecette.classList.remove("hidden")
+    afficherRecettes(recettes)
 }
 chargerRecettes()
 
@@ -62,7 +64,11 @@ async function rechercherecette(motrechercher) {
     const data = await searchRecipes(motrechercher);
     // console.log(data)
     affichagerecette.replaceChildren()
-    afficherRecettes(data.recipes);
+    afficherMessageVide(data.recipes)
+    afficherRecettes(data.recipes)
+
+    const comnteurerecette = document.querySelector("#recipes-count");
+    comnteurerecette.textContent = data.recipes.length;
     
 }
 
@@ -72,20 +78,31 @@ const searchinput = document.querySelector("#search-input")
 
 searchForm.addEventListener("submit",function(event){
 
-    event.preventDefault
-    affichagerecette.replaceChildren()
-    const recette= searchinput.value.trim()
-    rechercherecette(recette)
-    afficherMessageVide()
+    event.preventDefault()
+    const recette = searchinput.value.trim();
+
+    if (recette !== "") {
+        rechercherecette(recette)
+    }
 
 })
 
 const emptymessage = document.querySelector("#empty-message")
 const showallbutton = document.querySelector("#show-all-button")
 
-async function afficherMessageVide() {
-    if (searchinput.value.trim()=== ""){
+async function afficherMessageVide(recettes) {
+    if (recettes.length === 0) {
         emptymessage.classList.remove("hidden")
         affichagerecette.classList.add("hidden")
+    } else {
+        emptymessage.classList.add("hidden")
+        affichagerecette.classList.remove("hidden")
     }
 } 
+showallbutton.addEventListener("click", function() {
+    emptymessage.classList.add("hidden")
+    affichagerecette.classList.remove("hidden")
+    affichagerecette.replaceChildren()
+
+    chargerRecettes()
+});
