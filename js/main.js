@@ -1,11 +1,11 @@
-import { getRecipes ,searchRecipes } from "./API.js"
-
+import { addRecipe, getRecipes ,searchRecipes } from "./API.js"
+import {validationform} from "./validation.js"
 const affichagerecette = document.querySelector("#affichagerecette")
 
-async function afficherRecettes(recette) {
 
-    recette.forEach(recette => {
-        const carte = document.createElement("div")
+
+function creerCarte(recette){
+    const carte = document.createElement("div")
 
         carte.className = "bg-white rounded-xl shadow-md overflow-hidden  ";
 
@@ -38,8 +38,15 @@ async function afficherRecettes(recette) {
 
         carte.append(image, contenu);
 
-        affichagerecette.appendChild(carte);
+        return carte
 
+}
+
+
+function afficherRecettes(recettes) {
+    recettes.forEach(recette => {
+        const carte = creerCarte(recette);
+        affichagerecette.appendChild(carte);
     });
 }
 
@@ -48,7 +55,7 @@ async function chargerRecettes() {
     const recettes = data.recipes;  
 
     // console.log(data);
-    // console.log(data.recipes);
+    console.log(data.recipes);
     // console.log(data.recipes[0]);
     const comnteurerecette = document.querySelector("#recipes-count")
     comnteurerecette.textContent=data.recipes.length
@@ -88,7 +95,7 @@ searchForm.addEventListener("submit",function(event){
 })
 
 const emptymessage = document.querySelector("#empty-message")
-const showallbutton = document.querySelector("#show-all-button")
+const showallcarte = document.querySelector("#show-all-button")
 
 async function afficherMessageVide(recettes) {
     if (recettes.length === 0) {
@@ -99,7 +106,7 @@ async function afficherMessageVide(recettes) {
         affichagerecette.classList.remove("hidden")
     }
 } 
-showallbutton.addEventListener("click", function(event) {
+showallcarte.addEventListener("click", function(event) {
     event.preventDefault()
 
     emptymessage.classList.add("hidden")
@@ -112,81 +119,57 @@ showallbutton.addEventListener("click", function(event) {
 
 const ajouterrecette = document.querySelector("#ajouterrecette")
 const  submitrecipebutton=document.querySelector("#submit-recipe-button")
+const notification =document.querySelector("#notification")
 
-
-ajouterrecette.addEventListener("submit",function(event){
-
+ajouterrecette.addEventListener("submit",async function(event){
 
     event.preventDefault()
+    const isValid = validationform()
+    console.log("Validation :", isValid)
+    if (!isValid){
+        return ;
+    }
 
+    
     const recipename =document.querySelector("#recipe-name")
     const recipecuisine =document.querySelector("#recipe-cuisine")
     const recipedifficulty =document.querySelector("#recipe-difficulty")
     const recipetime =document.querySelector("#recipe-time")
 
-    let hasError = false
-
-    const nameerror =document.querySelector("#name-error")
-    const name = recipename.value.trim()
-    if (name === "") {
-        nameerror.textContent = "Veuillez entrer le nom de la recette"
-        nameerror.classList.remove("hidden")
-        hasError = true
-
-    } else if (name.length < 3 || name.length > 60) {
-        nameerror.textContent = "Le nom doit contenir entre 3 et 60 caractères"
-        nameerror.classList.remove("hidden")
-        hasError = true
-    } else {
-        nameerror.classList.add("hidden")
-    }
-
-    const cuisineerror =document.querySelector("#cuisine-error")
-    if (recipecuisine.value.trim() === "") {
-        cuisineerror.textContent = "Veuillez entrer le type de cuisine"
-        cuisineerror.classList.remove("hidden")
-        hasError = true
-    } else {
-        cuisineerror.classList.add("hidden")
-    }
-
-
-    const difficultyerror =document.querySelector("#difficulty-error")
-    if (recipedifficulty.value===""){
-        difficultyerror.textContent ="Veuiller selectionner la defficulter de recette"
-        difficultyerror.classList.remove("hidden")
-        hasError = true
-
-    }else {
-        difficultyerror.classList.add("hidden")
-    }
-
-    const timeerror =document.querySelector("#time-error")
-    const time = Number(recipetime.value)
-
-    if (recipetime.value.trim() === "") {
-        timeerror.textContent = "Veuillez entrer le temps de preparation"
-        timeerror.classList.remove("hidden")
-        hasError = true
-
-    } else if (!Number.isFinite(time) || time < 1 || time > 300) {
-        timeerror.textContent = "Le temps doit etre entre 1 et 300 minutes"
-        timeerror.classList.remove("hidden")
-        hasError = true
-
-    } else {
-        timeerror.classList.add("hidden")
-    }
-
-    if (hasError) {
-        return
+    const data = {
+        image: "https://resize.elle.fr/article_960_webp/var/plain_site/storage/images/elle-a-table/les-dossiers-de-la-redaction/news-de-la-redaction/recettes-faciles-cuisine-marocaine-4173785/100676152-1-fre-FR/Cuisine-marocaine-5-recettes-pour-s-y-mettre.jpg",
+        name: recipename.value.trim(),
+        cuisine: recipecuisine.value.trim(),
+        difficulty: recipedifficulty.value,
+        prepTimeMinutes: Number(recipetime.value)
     }
     console.log("valider");
     
 
+    submitrecipebutton.disabled = true
+    submitrecipebutton.classList.remove("hover:bg-[#cf6428]")
+    submitrecipebutton.classList.replace("bg-[#E87532]","bg-[#FDBA91]")
+    try{
+        const ajouterrecette = await addRecipe(data)
+        console.log(ajouterrecette)
+        
+        const carte = creerCarte(ajouterrecette);
+        affichagerecette.prepend(carte);    
+
+        notification.classList.remove("hidden")
+        setTimeout(() => {
+            notification.classList.add("hidden")
+        }, 3000)
+
+    } catch(error){
+        console.log("erreur dajouter un recette")
+    } finally{
+        submitrecipebutton.disabled = false
+        submitrecipebutton.classList.add("hover:bg-[#cf6428]")
+        submitrecipebutton.classList.replace("bg-[#FDBA91]", "bg-[#E87532]")
+
+    }
     
-
-
     
 })
 

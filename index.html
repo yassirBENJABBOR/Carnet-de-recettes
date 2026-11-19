@@ -395,11 +395,18 @@
                                 type="submit"
                                 id="submit-recipe-button"
                                 class="w-full bg-[#E87532] hover:bg-[#cf6428] text-white font-bold py-4 rounded-xl transition flex justify-center items-center gap-2">
-                            
+
                                 <i class="fa-solid fa-plus"></i>
                                 Ajouter la recette
 
                             </button>
+                            <div id="notification"
+                                class="hidden mt-3 w-full bg-[#2F4938] text-white px-4 py-3 rounded-xl shadow-md text-sm">
+
+                                <i id="notification-icon" class="fa-solid fa-circle-check mr-2"></i>
+                                <span id="notification-message">Opération réussie.</span>
+
+                            </div>
 
                         </form>
 
@@ -413,13 +420,7 @@
 
 
         <!-- NOTIFICATION -->
-        <div id="notification"
-            class="hidden fixed bottom-6 right-6 z-[60] bg-[#2F4938] text-white px-6 py-4 rounded-xl shadow-lg">
-
-            <i id="notification-icon" class="fa-solid fa-circle-check mr-2"></i>
-            <span id="notification-message">Opération réussie.</span>
-
-        </div>
+        
 
     </main>
 

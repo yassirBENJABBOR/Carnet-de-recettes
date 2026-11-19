@@ -27,3 +27,7 @@ export const api = axios.create({
 
 
 
+export async function addRecipe(data){
+    const response =await api.post("/recipes/add",data)
+    return response.data
+}
