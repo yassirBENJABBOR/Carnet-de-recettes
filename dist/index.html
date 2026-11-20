@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Carnet Gourmand | Recettes</title>
+    <meta name="description" content="Découvrez, recherchez et partagez vos meilleures recettes de cuisine.">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>body{font-family:DM Sans,sans-serif}h1,h2,h3{font-family:Playfair Display,serif}html{scroll-behavior:smooth}.recipe-card{transition:transform .3s,box-shadow .3s}.recipe-card:hover{transform:translateY(-5px);box-shadow:0 15px 35px #00000014}.hero-bg{background-color:#0000;background-image:linear-gradient(90deg,#1b2b20e0,#1b2b2040),url(https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1800&q=85);background-position:50%;background-repeat:repeat,repeat;background-size:cover;background-attachment:scroll,scroll;background-origin:padding-box,padding-box;background-clip:border-box,border-box}</style>
+  <script type="module" crossorigin src="/assets/index-BAvvm7Wv.js"></script>
+</head>
+
+<body class="bg-[#FAF7F2] text-[#252525]">
+
+    <!-- HEADER -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-[#E87532] rounded-xl flex items-center justify-center text-white text-xl">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+
+                <div>
+                    <h1 class="text-xl font-bold text-[#2F4938]">
+                        Le Carnet Gourmand
+                    </h1>
+                    <p class="text-[10px] tracking-[3px] text-gray-400 uppercase">
+                        La cuisine avec passion     
+                    </p>
+                </div>
+            </a>
+
+            <!-- Navigation -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#" class="text-[#E87532] font-semibold">Accueil</a>
+                <a href="#recipes-section" class="text-gray-600 hover:text-[#E87532] transition">
+                    Nos recettes
+                </a>
+                <a href="#add-recipe-section" class="text-gray-600 hover:text-[#E87532] transition">
+                    Ajouter une recette
+                </a>
+            </div>
+
+            <!-- Button -->
+            <a href="#add-recipe-section"
+                class="bg-[#E87532] hover:bg-[#cf6428] text-white px-5 py-3 rounded-xl font-semibold text-sm transition flex items-center gap-2">
+                <i class="fa-solid fa-plus"></i>
+                <span class="hidden sm:inline">Nouvelle recette</span>
+            </a>
+
+        </nav>
+    </header>
+
+
+    <!-- HERO SECTION -->
+    <main>
+
+        <section class="px-5 lg:px-8 pt-8">
+            <div class="hero-bg max-w-7xl mx-auto rounded-[30px] min-h-[420px] flex items-center overflow-hidden">
+
+                <div class="max-w-2xl px-8 md:px-16 py-16 text-white">
+
+                    <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm mb-6">
+                        <i class="fa-solid fa-heart text-orange-300 mr-2"></i>
+                        Bienvenue dans notre cuisine
+                    </span>
+
+                    <h2 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                        Découvrez le plaisir de cuisiner.
+                    </h2>
+
+                    <p class="text-white/80 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
+                        Explorez des recettes délicieuses, trouvez l'inspiration
+                        et partagez votre passion pour la cuisine.
+                    </p>
+
+                    <a href="#recipes-section"
+                        class="inline-flex items-center gap-3 bg-[#E87532] hover:bg-[#cf6428] px-7 py-4 rounded-xl font-bold transition">
+                        Explorer les recettes
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SEARCH SECTION -->
+        <section class="max-w-7xl mx-auto px-5 lg:px-8 mt-12">
+
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+
+                <div>
+                    <p class="text-[#E87532] font-semibold text-sm mb-2 uppercase tracking-widest">
+                        Trouvez votre inspiration
+                    </p>
+
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2F4938]">
+                        Que voulez-vous cuisiner ?
+                    </h2>
+                </div>
+
+                <!-- Search Form -->
+                <form id="search-form" class="w-full md:max-w-md flex bg-white border border-gray-200 rounded-xl p-2 shadow-sm">
+
+                    <input
+                        type="search"
+                        id="search-input"
+                        placeholder="Rechercher une recette..."
+                        class="w-full px-3 py-2 outline-none text-sm bg-transparent"
+                    >
+
+                    <button
+                        type="submit"
+                        class="bg-[#2F4938] hover:bg-[#243a2c] text-white px-5 py-3 rounded-lg transition"
+                        aria-label="Rechercher">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECIPES SECTION -->
+        <section id="recipes-section" class="max-w-7xl mx-auto px-5 lg:px-8 py-14">
+
+            <!-- Section title -->
+            <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-4 mb-8">
+
+                <div>
+                    <p class="text-[#E87532] text-sm font-semibold uppercase tracking-widest mb-2">
+                        Notre sélection
+                    </p>
+
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2F4938]">
+                        Toutes nos recettes
+                    </h2>
+                </div>
+
+                <p class="text-gray-500 text-sm">
+                    <span id="recipes-count" class="text-[#E87532] font-bold text-xl">0</span>
+                     recettes disponibles
+                </p>
+
+            </div>
+
+
+            <!-- LOADING -->
+            <div id="loading" class="hidden text-center py-16">
+                <div class="w-12 h-12 border-4 border-orange-200 border-t-[#E87532] rounded-full animate-spin mx-auto mb-4"></div>
+                <p class="text-gray-500">Préparation de vos recettes...</p>
+            </div>
+
+            <!-- DELETE ERROR -->
+            <div id="delete-error" class="hidden bg-red-50 border m-4 border-red-200 rounded-xl p-4 mt-4">
+                <p class="text-red-600 font-semibold">
+                    <i class="fa-solid fa-triangle-exclamation mr-2"></i>
+                    Impossible de supprimer cette recette.
+                </p>
+                <p id="delete-error-text" class="text-red-500 text-sm mt-2">
+                    Recette introuvable (404).
+                </p>
+            </div>
+
+            <div id="affichagerecette" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+            </div>
+
+            <!-- ERROR -->
+            <div id="error-container" class="hidden bg-red-50 border border-red-200 rounded-2xl p-8 text-center mb-8">
+
+                <i class="fa-solid fa-triangle-exclamation text-red-500 text-3xl mb-4"></i>
+
+                <h3 id="error-text" class="text-xl font-bold text-red-700 mb-2">
+                    Une erreur est survenue.
+                </h3>
+
+                <p class="text-gray-500 mb-5">
+                    Impossible de récupérer les recettes.
+                </p>
+
+                <button id="retry-button"
+                    class="bg-[#E87532] hover:bg-[#cf6428] text-white px-6 py-3 rounded-xl transition">
+                    <i class="fa-solid fa-rotate-right mr-2"></i>
+                    Réessayer
+                </button>
+
+            </div>
+
+
+            <!-- EMPTY STATE -->
+            <div id="empty-message" class="hidden text-center py-16 bg-white rounded-2xl">
+
+                <div class="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center mx-auto mb-5">
+                    <i class="fa-solid fa-magnifying-glass text-[#E87532] text-3xl"></i>
+                </div>
+
+                <h3 class="text-2xl font-bold text-[#2F4938] mb-3">
+                    Aucune recette trouvée
+                </h3>
+
+                <p class="text-gray-500 mb-6">
+                    Essayez avec un autre mot-clé.
+                </p>
+
+                <button id="show-all-button"
+                    class="bg-[#E87532] hover:bg-[#cf6428] text-white px-6 py-3 rounded-xl transition">
+                    Voir toutes les recettes
+                </button>
+
+            </div>
+
+
+            <!-- RECIPES CONTAINER -->
+            <div id="recipes-container"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
+
+                <!-- Les cartes seront générées avec JavaScript -->
+
+            </div>
+
+        </section>
+
+
+        <!-- ADD RECIPE SECTION -->
+        <section id="add-recipe-section" class="bg-white py-16">
+
+            <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                    <!-- Left content -->
+                    <div>
+
+                        <p class="text-[#E87532] font-semibold text-sm uppercase tracking-widest mb-3">
+                            Partagez votre passion
+                        </p>
+
+                        <h2 class="text-4xl md:text-5xl font-bold text-[#2F4938] leading-tight mb-6">
+                            Ajoutez votre propre recette.
+                        </h2>
+
+                        <p class="text-gray-500 leading-relaxed mb-8 max-w-lg">
+                            Chaque recette raconte une histoire.
+                            Partagez vos créations culinaires et
+                            inspirez les autres passionnés de cuisine.
+                        </p>
+
+                        <div class="flex items-center gap-4 text-gray-600">
+                            <div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-[#E87532]">
+                                <i class="fa-solid fa-kitchen-set text-xl"></i>
+                            </div>
+
+                            <div>
+                                <p class="font-bold text-[#2F4938]">Votre cuisine, votre créativité</p>
+                                <p class="text-sm text-gray-400">Ajoutez et partagez vos idées.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Form -->
+                    <div class="bg-[#FAF7F2] rounded-3xl p-7 md:p-9">
+
+                        <h3 class="text-2xl font-bold text-[#2F4938] mb-2">
+                            Nouvelle recette
+                        </h3>
+
+                        <p class="text-gray-500 text-sm mb-7">
+                            Remplissez les informations ci-dessous.
+                        </p>
+
+                        <form id="ajouterrecette" class="space-y-5" novalidate>
+
+                            <!-- Recipe name -->
+                            <div>
+                                <label for="recipe-name" class="block text-sm font-semibold mb-2">
+                                    Nom de la recette
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="recipe-name"
+                                    name="name"
+                                    placeholder="Ex : Tajine de poulet"
+                                    minlength="3"
+                                    maxlength="60"
+                                    required
+                                    class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#E87532] transition"
+                                >
+
+                                <p id="name-error" class="hidden text-red-500 text-xs mt-2"></p>
+                            </div>
+
+
+                            <!-- Cuisine -->
+                            <div>
+                                <label for="recipe-cuisine" class="block text-sm font-semibold mb-2">
+                                    Type de cuisine
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="recipe-cuisine"
+                                    name="cuisine"
+                                    placeholder="Ex : Moroccan"
+                                    required
+                                    class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#E87532] transition"
+                                >
+
+                                <p id="cuisine-error" class="hidden text-red-500 text-xs mt-2"></p>
+                            </div>
+
+
+                            <!-- Difficulty -->
+                            <div>
+                                <label for="recipe-difficulty" class="block text-sm font-semibold mb-2">
+                                    Difficulté
+                                </label>
+
+                                <select
+                                    id="recipe-difficulty"
+                                    name="difficulty"
+                                    required
+                                    class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#E87532] transition">
+
+                                    <option value="">Choisir une difficulté</option>
+                                    <option value="Easy">Facile</option>
+                                    <option value="Medium">Moyenne</option>
+                                    <option value="Hard">Difficile</option>
+
+                                </select>
+
+                                <p id="difficulty-error" class="hidden text-red-500 text-xs mt-2"></p>
+                            </div>
+
+
+                            <!-- Preparation time -->
+                            <div>
+                                <label for="recipe-time" class="block text-sm font-semibold mb-2">
+                                    Temps de préparation (minutes)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="recipe-time"
+                                    name="prepTimeMinutes"
+                                    placeholder="Ex : 30"
+                                    min="1"
+                                    max="300"
+                                    required
+                                    class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#E87532] transition"
+                                >
+
+                                <p id="time-error" class="hidden text-red-500 text-xs mt-2"></p>
+                            </div>
+
+
+                            <!-- Submit -->
+                            <button
+                                type="submit"
+                                id="submit-recipe-button"
+                                class="w-full bg-[#E87532] hover:bg-[#cf6428] text-white font-bold py-4 rounded-xl transition flex justify-center items-center gap-2">
+
+                                <i class="fa-solid fa-plus"></i>
+                                Ajouter la recette
+
+                            </button>
+                            <div id="notification"
+                                class="hidden mt-3 w-full bg-[#2F4938] text-white px-4 py-3 rounded-xl shadow-md text-sm">
+
+                                <i id="notification-icon" class="fa-solid fa-circle-check mr-2"></i>
+                                <span id="notification-message">Opération réussie.</span>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- NOTIFICATION -->
+        
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-[#243A2C] text-white py-10">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+
+                <div class="flex items-center gap-3">
+
+                    <div class="w-11 h-11 bg-[#E87532] rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-utensils text-xl"></i>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl font-bold">Le Carnet Gourmand</h2>
+                        <p class="text-gray-400 text-xs">La cuisine avec passion.</p>
+                    </div>
+
+                </div>
+
+                <div class="flex gap-6 text-sm text-gray-300">
+                    <a href="#" class="hover:text-orange-400 transition">Accueil</a>
+                    <a href="#recipes-section" class="hover:text-orange-400 transition">Recettes</a>
+                    <a href="#add-recipe-section" class="hover:text-orange-400 transition">Ajouter</a>
+                </div>
+
+            </div>
+
+            <div class="border-t border-white/10 mt-8 pt-6 text-center text-gray-400 text-sm">
+                © 2026 Le Carnet Gourmand. Tous droits réservés.
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+</body>
+</html>
