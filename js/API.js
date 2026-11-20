@@ -26,8 +26,13 @@ export const api = axios.create({
 });
 
 
-
+    
 export async function addRecipe(data){
     const response =await api.post("/recipes/add",data)
+    return response.data
+}
+
+export async function deletRecipe(id){
+    const response =await api.delete(`/recipes/${id}`)
     return response.data
 }

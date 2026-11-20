@@ -8,8 +8,6 @@
     <meta name="description" content="Découvrez, recherchez et partagez vos meilleures recettes de cuisine.">
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
@@ -193,6 +191,17 @@
             <div id="loading" class="hidden text-center py-16">
                 <div class="w-12 h-12 border-4 border-orange-200 border-t-[#E87532] rounded-full animate-spin mx-auto mb-4"></div>
                 <p class="text-gray-500">Préparation de vos recettes...</p>
+            </div>
+
+            <!-- DELETE ERROR -->
+            <div id="delete-error" class="hidden bg-red-50 border m-4 border-red-200 rounded-xl p-4 mt-4">
+                <p class="text-red-600 font-semibold">
+                    <i class="fa-solid fa-triangle-exclamation mr-2"></i>
+                    Impossible de supprimer cette recette.
+                </p>
+                <p id="delete-error-text" class="text-red-500 text-sm mt-2">
+                    Recette introuvable (404).
+                </p>
             </div>
 
             <div id="affichagerecette" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
